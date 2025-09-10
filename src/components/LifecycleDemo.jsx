@@ -1,4 +1,4 @@
-import { Components } from "react";
+import { Component } from "react";
 
 let renderCount = 0;
 
@@ -29,13 +29,46 @@ export default class LifecycleDemo extends Component {
         console.log("LifeCycleDemo - The component did Mount")
 
         console.log("LifeCycleDemo - DOM is ready, good place to fetch/timers/subscriptions")
-
+ 
     }
 
     
-    shouldComponentsUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
         const should = true;
         console.log("LifecycleDemo - Should Component Update", { nextProps, nextState, should})
         return should;
     }
+    getSnapSotBeforeUpdate(prevProps, prevState) {
+        console.log("LifeCycledemo - getSnapShotBeforeUpdate")
+        return null;
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.clicks !== this.state.clicks) {
+            console.log(`LifeCycleDemo clicks: ${prevState.clicks} - ${this.state.clicks}`)
+        }
+        if (prevProps.title !== this.props.title) {
+            console.log(`LifeCycleDemo title: "${prevProps.title}" - "${this.props.title}"`);
+        }
+    }
+
+    componentWillUnmount() {
+        console.log("LifeCycleDemo componentWillUnmount")
+    }
+
+    render() {
+        renderCount += 1;
+        console.log(`LifeCycleDemo render #${renderCount}`)
+        console.log("LifeCycleDemo current props in render", this.props)
+        console.log("LifeCycleDemo current props in render", this.props)
+
+        return (
+            <div style={{ padding: "1rem", border: "1px solid #333", borderRadius: 8}}>
+            <h3>{this.props.title}</h3>
+            <p>Clicks: {this.state.clicks}</p>
+            <button onClick={this.handleClick}>Increment</button>
+            </div>
+
+        )
+    }
+
 }
