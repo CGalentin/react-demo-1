@@ -7,7 +7,7 @@ export default class Clock extends Component {
     console.log("Clock - constructor");
   }
 
-  componentdidMount() {
+  componentDidMount() {
     console.log("Clock - componentDidMount");
     this.timer = setInterval(() => {
       console.log("Clock tick - setState(now)");
@@ -26,7 +26,7 @@ export default class Clock extends Component {
 
   render() {
     console.log("Clock - render")
-    return <p>Time: {this.state.now.toLocalTimeString()}</p>
+    return <p>Time: {this.state.now.toLocaleTimeString()}</p>
   }
-  
+
 }

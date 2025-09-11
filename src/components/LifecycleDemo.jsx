@@ -2,12 +2,12 @@ import { Component } from "react";
 
 let renderCount = 0;
 
-export default class LifecycleDemo extends Component {
+export default class LifeCycleDemo extends Component {
     constructor(props) {
         super(props)
 
         this.state = {clicks: 0}
-        this.handleClick = this.handleClick.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
 
         console.log("%cLifcycleDemo - Constructor", "font-weight:bold")
         console.log("LifcycleDemo - Initial Props", props)
@@ -16,7 +16,7 @@ export default class LifecycleDemo extends Component {
     }
 
     handleClick() {
-        console.log("LifecycleDemo - handleClick > SetState(+1)")
+        console.log("LifecycleDemo - handleClick > setState(+1)")
         this.setState((s) => ({clicks: s.clicks + 1}));
     }
 
@@ -38,7 +38,7 @@ export default class LifecycleDemo extends Component {
         console.log("LifecycleDemo - Should Component Update", { nextProps, nextState, should})
         return should;
     }
-    getSnapSotBeforeUpdate(prevProps, prevState) {
+    getSnapShotBeforeUpdate(prevProps, prevState) {
         console.log("LifeCycledemo - getSnapShotBeforeUpdate")
         return null;
     }
@@ -56,7 +56,7 @@ export default class LifecycleDemo extends Component {
     }
 
     render() {
-        renderCount += 1;
+        renderCount +=1;
         console.log(`LifeCycleDemo render #${renderCount}`)
         console.log("LifeCycleDemo current props in render", this.props)
         console.log("LifeCycleDemo current props in render", this.props)
